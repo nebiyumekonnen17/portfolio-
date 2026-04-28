@@ -21,11 +21,12 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         /* --- DEVELOPER CONSOLE --- */
         .dev-hero {
-            height: 60vh;
+            height: 65vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -35,7 +36,7 @@
 
         .console {
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
             background: #111;
             border-radius: 12px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
@@ -84,42 +85,33 @@
             color: #98c379;
         }
 
-        /* --- BADGE GALLERY --- */
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            padding: 60px 0 20px;
-            font-weight: 800;
-        }
-
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 40px 10%;
-        }
-
-        .badge-card {
-            background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        /* --- EXPERIENCE --- */
-        .exp-section { padding: 80px 10%; }
+        /* --- WHAT I DO (AWS FOCUS) --- */
+        section { padding: 80px 10%; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 40px; font-weight: 800; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        
         .card {
             background: var(--glass);
             padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s ease;
         }
-        .card ul { margin-left: 20px; margin-top: 10px; color: #cbd5e1; font-size: 0.95rem; }
 
-        footer { text-align: center; padding: 60px; background: #070b14; }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .card h3 { color: var(--primary); margin-bottom: 15px; }
+        .card i { font-size: 2rem; color: var(--primary); margin-bottom: 20px; display: block; }
+
+        /* --- BADGE GALLERY --- */
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        footer { text-align: center; padding: 60px; background: #070b14; border-top: 1px solid #1e293b; }
 
     </style>
 </head>
@@ -129,111 +121,94 @@
         <div class="console">
             <div class="console-header">
                 <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                <span style="font-size: 11px; color: #94a3b8; margin-left: 10px;">nebiyu@cloud-ops: ~ portfolio --init</span>
+                <span style="font-size: 11px; color: #94a3b8; margin-left: 10px;">nebiyu@aws-restart: ~ portfolio --status</span>
             </div>
             <div class="console-body">
-                <p style="color: #c678dd; margin-bottom: 10px;">// AWS re/Start Certified Professional</p>
-                <p style="color: #d1d5db;">Initialize Cloud Infrastructure Profile?</p>
-                <button class="run-btn" style="margin-top: 15px;" onclick="document.getElementById('output').style.display='block'">[ RUN ]</button>
+                <p style="color: #c678dd; margin-bottom: 10px;">// AWS Cloud Infrastructure Specialist</p>
+                <p style="color: #d1d5db;">Initialize technical stack visualization?</p>
+                <button class="run-btn" style="margin-top: 15px;" onclick="document.getElementById('output').style.display='block'">[ EXECUTE ]</button>
                 <div id="output">
-                    > Name: Nebiyu Mekonnen<br>
-                    > Focus: Cloud Computing, Networking, & Operations Management<br>
-                    > Skills: AWS Services (EC2, S3, VPC), Linux/Shell, Python, JavaScript<br>
-                    > Scroll down for verified credentials.
+                    > Scaling Architecture... OK<br>
+                    > Configuring VPC & Security Groups... OK<br>
+                    > Environment: AWS Cloud Foundation / Linux Ubuntu<br>
+                    > Status: Ready for Deployment
                 </div>
             </div>
         </div>
     </div>
 
+    <section id="what-i-do">
+        <h2 class="section-title">Cloud Capabilities</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-cloud"></i>
+                <h3>Infrastructure as Service</h3>
+                <p>Deploying scalable architectures using <strong>Amazon EC2</strong> and <strong>S3</strong>. Proficient in Load Balancing and Auto Scaling to maintain high availability.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Network Engineering</h3>
+                <p>Designing secure <strong>Amazon VPCs</strong>. Implementing network isolation through Subnets, Security Groups, NACLs, and Internet Gateways.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-terminal"></i>
+                <h3>Linux Administration</h3>
+                <p>Advanced Shell Scripting and process management. Skilled in secure remote access (SSH/Putty), user/group permissions, and file system navigation.</p>
+            </div>
+        </div>
+    </section>
+
     <h2 class="section-title">Verified Credentials</h2>
-    <div class="badge-grid">
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Critical Thinking</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Digital Literacy</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Professionalism</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Communication</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="de9f20df-a028-41f2-a5b5-c04d0451ace6"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Teamwork</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="b53d2318-924d-4035-aca2-26f3344f6178"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Problem Solving</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="b102d2ed-94d5-4c91-bde8-788b62afcfcd"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Intercultural Fluency</p>
-        </div>
-        <div class="badge-card">
-            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="044e7be9-82b9-4867-85b2-13429204118d"></div>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Career Management</p>
-        </div>
+    <div class="badge-grid" style="padding: 40px 10%;">
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="de9f20df-a028-41f2-a5b5-c04d0451ace6"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="b53d2318-924d-4035-aca2-26f3344f6178"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="b102d2ed-94d5-4c91-bde8-788b62afcfcd"></div>
+        <div data-iframe-width="150" data-iframe-height="150" data-score-id="044e7be9-82b9-4867-85b2-13429204118d"></div>
     </div>
 
-    <section class="exp-section">
-        <h2 class="section-title">Professional Experience</h2>
+    <section style="background: rgba(0,0,0,0.2);">
+        <h2 class="section-title">Technical Experience</h2>
         
-        <div class="card">
+        <div class="card" style="margin-bottom: 20px;">
             <h3>Office Manager | ABE LAW FIRM</h3>
             <p style="color: var(--primary);">Aug. 2023 – Present</p>
-            <ul>
-                <li>Directed daily operations using Legal Management Systems to maintain a fast-paced digital workflow.</li>
-                <li>Implemented new digital filing protocols to transition from physical to cloud-based documentation.</li>
-                <li>Utilized Microsoft Excel for data tracking and reporting on case progress.</li>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #cbd5e1;">
+                <li>Administered daily operations via <strong>Legal Management Systems</strong> to maintain a fast-paced digital workflow.</li>
+                <li>Leveraged <strong>Microsoft Excel</strong> for advanced data tracking, pivot tables, and reporting on case life-cycles.</li>
+                <li>Managed digital communication infrastructure and troubleshot local hardware/software connectivity issues.</li>
             </ul>
         </div>
 
-        <div class="card">
+        <div class="card" style="margin-bottom: 20px;">
             <h3>Office Manager | FIRE WATCH SECURITY</h3>
             <p style="color: var(--primary);">Aug. 2024 – March 2025</p>
-            <ul>
-                <li>Administered Security Monitoring Software to track building activity and generate safety reports.</li>
-                <li>Facilitated technical onboarding and training for new hires on proprietary security systems.</li>
-                <li>Leveraged digital scheduling tools to coordinate shifts and manage a team of security officers.</li>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #cbd5e1;">
+                <li>Deployed and administered <strong>Security Monitoring Software</strong> to analyze facility logs and generate safety data reports.</li>
+                <li>Utilized digital scheduling platforms to coordinate real-time shifts for a distributed security team.</li>
+                <li>Provided technical onboarding for proprietary hardware and facility security systems.</li>
             </ul>
         </div>
 
         <div class="card">
             <h3>Store Manager | ROSS DRESS FOR LESS</h3>
             <p style="color: var(--primary);">Dec. 2017 – Aug. 2023</p>
-            <ul>
-                <li>Managed workforce management software (Kronos/Oracle) to lead 60+ associates.</li>
-                <li>Analyzed Point-of-Sale (POS) data to identify and resolve theft and fraud issues.</li>
-                <li>Utilized Asset Protection (ALPM) software to monitor store security and manage digital investigations.</li>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #cbd5e1;">
+                <li>Expertly navigated <strong>Kronos and Oracle</strong> workforce management software to schedule and optimize 60+ associates.</li>
+                <li>Analyzed <strong>Point-of-Sale (POS)</strong> telemetry and <strong>Asset Protection (ALPM)</strong> software to resolve digital fraud and theft.</li>
+                <li>Utilized <strong>Microsoft Suite</strong> to generate operational KPIs and shortage reduction reports.</li>
             </ul>
         </div>
     </section>
 
-    <section style="padding: 40px 10%; background: rgba(0,0,0,0.2);">
-        <h2 class="section-title">Education & Training</h2>
-        <div class="card">
-            <h3>Per Scholas | AWS re/Start Training</h3>
-            <p style="color: var(--primary);">Seattle, WA | August 2026</p>
-            <p style="margin-top: 10px;">Focused on Cloud Computing Services, Networking, Databases, and AWS Cloud Management.</p>
-            <div style="margin-top: 15px;">
-                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;">Linux</span>
-                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;">Python</span>
-                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;">AWS EC2/S3/VPC</span>
-                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem;">Shell Scripting</span>
-            </div>
-        </div>
-    </section>
-
     <footer>
-        <p>Nebiyu Mekonnen</p>
+        <h2>Nebiyu Mekonnen</h2>
         <p>Bothell, WA | 206-698-6660</p>
         <p>nebiyumekonnen17@gmail.com</p>
+        <p style="margin-top: 20px; color: var(--primary);">AWS re/Start | August 2026</p>
     </footer>
 
     <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
