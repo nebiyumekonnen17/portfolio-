@@ -3,213 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebiyu Mekonnen | Cloud & Ops Portfolio</title>
+    <title>Nebiyu Mekonnen | Cloud Infrastructure & Operations</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00d2ff;
-            --dark: #0f172a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --text-main: #f1f5f9;
+            --bg: #0a0c10;
+            --surface: #12151c;
+            --border: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background-color: var(--dark);
+            background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            min-height: 100vh;
         }
 
-        /* --- DEVELOPER CONSOLE --- */
-        .dev-hero {
-            height: 65vh;
+        /* --- Professional Sidebar --- */
+        nav {
+            width: 280px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .profile-card { margin-bottom: 40px; }
+        .profile-card h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .profile-card p { font-size: 0.85rem; color: var(--primary); margin-top: 5px; font-weight: 600; text-transform: uppercase; }
+
+        .nav-links { display: flex; flex-direction: column; gap: 10px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: 0.2s;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at top right, #1e293b, #0f172a);
-            padding: 20px;
+            gap: 12px;
         }
+        .nav-links a:hover { background: rgba(255,255,255,0.03); color: var(--text-main); }
+        .nav-links a.active { background: rgba(56, 189, 248, 0.1); color: var(--primary); font-weight: 600; }
 
-        .console {
-            width: 100%;
-            max-width: 850px;
-            background: #111;
+        /* --- Main Content --- */
+        main { flex: 1; margin-left: 280px; padding: 60px 8%; max-width: 1200px; }
+
+        /* --- Interactive Terminal Header --- */
+        .terminal-box {
+            background: #000;
             border-radius: 12px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
             overflow: hidden;
-            border: 1px solid #334155;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-
-        .console-header {
-            background: #1e293b;
+        .terminal-header {
+            background: #1e2229;
             padding: 12px 20px;
             display: flex;
-            align-items: center;
             gap: 8px;
+            align-items: center;
         }
-
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green { background: #27c93f; }
-
-        .console-body {
-            padding: 30px;
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        .terminal-body { padding: 30px; font-family: 'Fira Code', monospace; font-size: 14px; }
 
         .run-btn {
             background: var(--primary);
-            color: black;
+            color: #000;
             border: none;
-            padding: 10px 25px;
-            border-radius: 4px;
+            padding: 8px 20px;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
+            margin-top: 15px;
             transition: 0.3s;
         }
-
         .run-btn:hover { background: #fff; transform: translateY(-2px); }
 
-        #output {
-            margin-top: 20px;
-            padding: 15px;
-            border-left: 3px solid var(--primary);
-            background: rgba(255,255,255,0.05);
-            display: none;
-            color: #98c379;
-        }
+        /* --- Sections --- */
+        section { margin-bottom: 80px; }
+        .section-header { font-size: 1.8rem; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
+        .section-header::after { content: ""; height: 1px; background: var(--border); flex: 1; }
 
-        /* --- WHAT I DO (AWS FOCUS) --- */
-        section { padding: 80px 10%; }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 40px; font-weight: 800; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
         .card {
-            background: var(--glass);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 30px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.4s ease;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .card:hover { border-color: var(--primary); transform: translateY(-4px); background: #161a23; }
+        .card i { color: var(--primary); font-size: 1.5rem; margin-bottom: 20px; display: block; }
+        .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .card p { font-size: 0.95rem; color: var(--text-dim); }
 
-        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
-        .card h3 { color: var(--primary); margin-bottom: 15px; }
-        .card i { font-size: 2rem; color: var(--primary); margin-bottom: 20px; display: block; }
-
-        /* --- BADGE GALLERY --- */
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
+        /* --- Experience --- */
+        .exp-item { border-left: 2px solid var(--border); padding-left: 30px; position: relative; margin-bottom: 40px; }
+        .exp-item::before {
+            content: ""; width: 12px; height: 12px; background: var(--primary); 
+            border-radius: 50%; position: absolute; left: -7px; top: 5px;
+            box-shadow: 0 0 10px var(--primary);
         }
+        .exp-item h4 { font-size: 1.1rem; color: var(--text-main); }
+        .exp-item .meta { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 10px; display: block; }
+        .exp-item ul { list-style: none; color: var(--text-dim); font-size: 0.95rem; }
+        .exp-item li { margin-bottom: 8px; }
 
-        footer { text-align: center; padding: 60px; background: #070b14; border-top: 1px solid #1e293b; }
+        /* --- Badge Grid --- */
+        .badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
+        .badge-wrap { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid var(--border); }
 
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; padding: 40px 5%; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="dev-hero">
-        <div class="console">
-            <div class="console-header">
+    <nav>
+        <div class="profile-card">
+            <h1>NEBIYU MEKONNEN</h1>
+            <p>Cloud & Ops Specialist</p>
+        </div>
+        <div class="nav-links">
+            <a href="#about" class="active"><i class="fas fa-terminal"></i> Overview</a>
+            <a href="#aws"><i class="fas fa-cloud"></i> Cloud Capabilities</a>
+            <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+            <a href="#certifications"><i class="fas fa-certificate"></i> Verified Badges</a>
+        </div>
+        <div style="margin-top: auto;">
+            <p style="font-size: 0.75rem; color: var(--text-dim);">206-698-6660</p>
+            <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 20px;">nebiyumekonnen17@gmail.com</p>
+            <a href="mailto:nebiyumekonnen17@gmail.com" class="run-btn" style="text-decoration: none; display: block; text-align: center;">CONTACT</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="terminal-box" id="about">
+            <div class="terminal-header">
                 <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                <span style="font-size: 11px; color: #94a3b8; margin-left: 10px;">nebiyu@aws-restart: ~ portfolio --status</span>
+                <span style="font-size: 11px; color: var(--text-dim); margin-left: 10px;">aws_restart --verify-skills</span>
             </div>
-            <div class="console-body">
-                <p style="color: #c678dd; margin-bottom: 10px;">// AWS Cloud Infrastructure Specialist</p>
-                <p style="color: #d1d5db;">Initialize technical stack visualization?</p>
-                <button class="run-btn" style="margin-top: 15px;" onclick="document.getElementById('output').style.display='block'">[ EXECUTE ]</button>
-                <div id="output">
-                    > Scaling Architecture... OK<br>
-                    > Configuring VPC & Security Groups... OK<br>
-                    > Environment: AWS Cloud Foundation / Linux Ubuntu<br>
-                    > Status: Ready for Deployment
+            <div class="terminal-body">
+                <p style="color: var(--primary);">// Executing background verification...</p>
+                <p style="margin: 10px 0;">Nebiyu Mekonnen: Found 15-week AWS re/Start training session.</p>
+                <button class="run-btn" onclick="document.getElementById('out').style.display='block'">GET_DETAILS</button>
+                <div id="out" style="display:none; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px; color: #98c379;">
+                    > Verified: AWS Cloud Foundations (Aug 2026)<br>
+                    > Specialized: Linux, Python, Network Firewall, Auto Scaling.<br>
+                    > Operations: Kronos, Oracle, Legal Mgmt Systems.
                 </div>
             </div>
         </div>
-    </div>
 
-    <section id="what-i-do">
-        <h2 class="section-title">Cloud Capabilities</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-cloud"></i>
-                <h3>Infrastructure as Service</h3>
-                <p>Deploying scalable architectures using <strong>Amazon EC2</strong> and <strong>S3</strong>. Proficient in Load Balancing and Auto Scaling to maintain high availability.</p>
+        <section id="aws">
+            <h2 class="section-header">Technical Focus</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fas fa-server"></i>
+                    <h3>Compute & Storage</h3>
+                    <p>Deploying <strong>EC2 instances</strong> and <strong>S3 buckets</strong> with optimized load balancing and scaling configurations.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Networking & VPC</h3>
+                    <p>Building secure <strong>AWS Virtual Private Clouds</strong> using Subnets, NACLs, and Security Groups for robust isolation.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h3>Linux & Automation</h3>
+                    <p>Proficient in <strong>Shell Scripting</strong> and Python. Skilled in managing processes and file permissions on Linux systems.</p>
+                </div>
             </div>
-            <div class="card">
-                <i class="fas fa-network-wired"></i>
-                <h3>Network Engineering</h3>
-                <p>Designing secure <strong>Amazon VPCs</strong>. Implementing network isolation through Subnets, Security Groups, NACLs, and Internet Gateways.</p>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-header">Professional History</h2>
+            
+            <div class="exp-item">
+                <span class="meta">AUG 2023 – PRESENT</span>
+                <h4>Office Manager | ABE LAW FIRM</h4>
+                <ul>
+                    <li>• Directed operations using <strong>Legal Management Systems</strong> to automate digital workflows.</li>
+                    <li>• Managed <strong>Microsoft Excel</strong> datasets for reporting on case progress and customer throughput.</li>
+                    <li>• Troubleshot hardware/software issues to maintain high office availability.</li>
+                </ul>
             </div>
-            <div class="card">
-                <i class="fas fa-terminal"></i>
-                <h3>Linux Administration</h3>
-                <p>Advanced Shell Scripting and process management. Skilled in secure remote access (SSH/Putty), user/group permissions, and file system navigation.</p>
+
+            <div class="exp-item">
+                <span class="meta">AUG 2024 – MARCH 2025</span>
+                <h4>Office Manager | FIRE WATCH SECURITY</h4>
+                <ul>
+                    <li>• Administered <strong>Security Monitoring Software</strong> to generate facility safety reports and track hardware health.</li>
+                    <li>• Deployed digital scheduling tools to coordinate real-time shifts for distributed teams.</li>
+                    <li>• Served as technical liaison for system-wide software patches and updates.</li>
+                </ul>
             </div>
-        </div>
-    </section>
 
-    <h2 class="section-title">Verified Credentials</h2>
-    <div class="badge-grid" style="padding: 40px 10%;">
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="de9f20df-a028-41f2-a5b5-c04d0451ace6"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="b53d2318-924d-4035-aca2-26f3344f6178"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="b102d2ed-94d5-4c91-bde8-788b62afcfcd"></div>
-        <div data-iframe-width="150" data-iframe-height="150" data-score-id="044e7be9-82b9-4867-85b2-13429204118d"></div>
-    </div>
+            <div class="exp-item">
+                <span class="meta">DEC 2017 – AUG 2023</span>
+                <h4>Store Manager | ROSS DRESS FOR LESS</h4>
+                <ul>
+                    <li>• Managed 60+ associates via <strong>Kronos and Oracle</strong> workforce management software.</li>
+                    <li>• Analyzed <strong>Point-of-Sale (POS)</strong> telemetry and <strong>ALPM</strong> software to investigate theft and fraud patterns.</li>
+                    <li>• Generated operational KPI reports using the <strong>Microsoft Suite</strong> to drive shortage reduction.</li>
+                </ul>
+            </div>
+        </section>
 
-    <section style="background: rgba(0,0,0,0.2);">
-        <h2 class="section-title">Technical Experience</h2>
-        
-        <div class="card" style="margin-bottom: 20px;">
-            <h3>Office Manager | ABE LAW FIRM</h3>
-            <p style="color: var(--primary);">Aug. 2023 – Present</p>
-            <ul style="margin-left: 20px; margin-top: 10px; color: #cbd5e1;">
-                <li>Administered daily operations via <strong>Legal Management Systems</strong> to maintain a fast-paced digital workflow.</li>
-                <li>Leveraged <strong>Microsoft Excel</strong> for advanced data tracking, pivot tables, and reporting on case life-cycles.</li>
-                <li>Managed digital communication infrastructure and troubleshot local hardware/software connectivity issues.</li>
-            </ul>
-        </div>
-
-        <div class="card" style="margin-bottom: 20px;">
-            <h3>Office Manager | FIRE WATCH SECURITY</h3>
-            <p style="color: var(--primary);">Aug. 2024 – March 2025</p>
-            <ul style="margin-left: 20px; margin-top: 10px; color: #cbd5e1;">
-                <li>Deployed and administered <strong>Security Monitoring Software</strong> to analyze facility logs and generate safety data reports.</li>
-                <li>Utilized digital scheduling platforms to coordinate real-time shifts for a distributed security team.</li>
-                <li>Provided technical onboarding for proprietary hardware and facility security systems.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>Store Manager | ROSS DRESS FOR LESS</h3>
-            <p style="color: var(--primary);">Dec. 2017 – Aug. 2023</p>
-            <ul style="margin-left: 20px; margin-top: 10px; color: #cbd5e1;">
-                <li>Expertly navigated <strong>Kronos and Oracle</strong> workforce management software to schedule and optimize 60+ associates.</li>
-                <li>Analyzed <strong>Point-of-Sale (POS)</strong> telemetry and <strong>Asset Protection (ALPM)</strong> software to resolve digital fraud and theft.</li>
-                <li>Utilized <strong>Microsoft Suite</strong> to generate operational KPIs and shortage reduction reports.</li>
-            </ul>
-        </div>
-    </section>
-
-    <footer>
-        <h2>Nebiyu Mekonnen</h2>
-        <p>Bothell, WA | 206-698-6660</p>
-        <p>nebiyumekonnen17@gmail.com</p>
-        <p style="margin-top: 20px; color: var(--primary);">AWS re/Start | August 2026</p>
-    </footer>
+        <section id="certifications">
+            <h2 class="section-header">Verified Credentials</h2>
+            <div class="badge-grid">
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="de9f20df-a028-41f2-a5b5-c04d0451ace6"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="b53d2318-924d-4035-aca2-26f3344f6178"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="b102d2ed-94d5-4c91-bde8-788b62afcfcd"></div></div>
+                <div class="badge-wrap"><div data-iframe-width="110" data-iframe-height="110" data-score-id="044e7be9-82b9-4867-85b2-13429204118d"></div></div>
+            </div>
+        </section>
+    </main>
 
     <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 </body>
