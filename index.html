@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebiyu Mekonnen | Portfolio</title>
+    <title>Nebiyu Mekonnen | Cloud & Ops Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00d2ff;
-            --secondary: #3a7bd5;
             --dark: #0f172a;
-            --glass: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.05);
             --text-main: #f1f5f9;
         }
 
@@ -22,12 +21,11 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* --- DEVELOPER CONSOLE (TOP SECTION) --- */
+        /* --- DEVELOPER CONSOLE --- */
         .dev-hero {
-            height: 80vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,7 +36,7 @@
         .console {
             width: 100%;
             max-width: 800px;
-            background: #000;
+            background: #111;
             border-radius: 12px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             overflow: hidden;
@@ -61,104 +59,68 @@
         .console-body {
             padding: 30px;
             font-family: 'Fira Code', monospace;
-            font-size: 15px;
-            color: #d1d5db;
-        }
-
-        .code-input {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .code-output {
-            color: #94a3b8;
-            margin-left: 20px;
-            border-left: 2px solid #334155;
-            padding-left: 15px;
-            margin-bottom: 20px;
-            display: none; /* Controlled by JS */
+            font-size: 14px;
         }
 
         .run-btn {
             background: var(--primary);
             color: black;
             border: none;
-            padding: 5px 15px;
+            padding: 10px 25px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 12px;
             transition: 0.3s;
         }
 
-        .run-btn:hover { transform: scale(1.05); background: #fff; }
+        .run-btn:hover { background: #fff; transform: translateY(-2px); }
 
-        /* --- REGULAR USER INTERFACE (BOTTOM SECTION) --- */
-        section {
-            padding: 80px 10%;
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            border-left: 3px solid var(--primary);
+            background: rgba(255,255,255,0.05);
+            display: none;
+            color: #98c379;
         }
 
+        /* --- BADGE GALLERY --- */
         .section-title {
             font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 40px;
             text-align: center;
+            padding: 60px 0 20px;
+            font-weight: 800;
         }
 
-        .grid {
+        .badge-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px 10%;
         }
 
+        .badge-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* --- EXPERIENCE --- */
+        .exp-section { padding: 80px 10%; }
         .card {
             background: var(--glass);
             padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            transition: 0.4s ease;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
         }
+        .card ul { margin-left: 20px; margin-top: 10px; color: #cbd5e1; font-size: 0.95rem; }
 
-        .card:hover {
-            background: rgba(255,255,255,0.07);
-            border-color: var(--primary);
-            transform: translateY(-10px);
-        }
+        footer { text-align: center; padding: 60px; background: #070b14; }
 
-        .card h3 { color: var(--primary); margin-bottom: 10px; }
-        .card p { font-size: 0.95rem; color: #cbd5e1; }
-
-        .skill-pill {
-            display: inline-block;
-            background: rgba(0, 210, 255, 0.1);
-            color: var(--primary);
-            padding: 8px 18px;
-            border-radius: 50px;
-            margin: 5px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(0, 210, 255, 0.2);
-        }
-
-        footer {
-            text-align: center;
-            padding: 100px 10% 50px;
-            background: #070b14;
-        }
-
-        .contact-link {
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            display: block;
-            margin: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            section { padding: 50px 5%; }
-            .console-body { font-size: 12px; }
-        }
     </style>
 </head>
 <body>
@@ -166,112 +128,114 @@
     <div class="dev-hero">
         <div class="console">
             <div class="console-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-                <span style="font-size: 11px; color: #94a3b8; margin-left: 10px;">nebiyu-mekonnen — node.js</span>
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span style="font-size: 11px; color: #94a3b8; margin-left: 10px;">nebiyu@cloud-ops: ~ portfolio --init</span>
             </div>
             <div class="console-body">
-                <div class="code-input">
-                    <span style="color: #c678dd;">const</span> developer = <span style="color: #98c379;">'Nebiyu Mekonnen'</span>;
-                </div>
-                <div class="code-input">
-                    <span style="color: #c678dd;">function</span> <span style="color: #61afef;">initProfile</span>() { <br>
-                    &nbsp;&nbsp;<span style="color: #e5c07b;">console</span>.log(<span style="color: #98c379;">'Initializing...'</span>);
-                </div>
-                <div style="margin: 20px 0;">
-                    <button class="run-btn" onclick="runCode()">Run Code</button>
-                </div>
-                <div id="output" class="code-output">
-                    > Success! <br>
-                    > Role: Software Developer / Operations Manager <br>
-                    > Location: Ready for new opportunities <br>
-                    > Status: <span style="color: #27c93f;">Online</span>
-                </div>
-                <div class="code-input" style="margin-top: 10px;">
-                    <span style="color: #56b6c2;">// Scroll down for human-readable version</span>
+                <p style="color: #c678dd; margin-bottom: 10px;">// AWS re/Start Certified Professional</p>
+                <p style="color: #d1d5db;">Initialize Cloud Infrastructure Profile?</p>
+                <button class="run-btn" style="margin-top: 15px;" onclick="document.getElementById('output').style.display='block'">[ RUN ]</button>
+                <div id="output">
+                    > Name: Nebiyu Mekonnen<br>
+                    > Focus: Cloud Computing, Networking, & Operations Management<br>
+                    > Skills: AWS Services (EC2, S3, VPC), Linux/Shell, Python, JavaScript<br>
+                    > Scroll down for verified credentials.
                 </div>
             </div>
         </div>
     </div>
 
-    <section id="about">
-        <h2 class="section-title">What I Do</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-code-branch" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
-                <h3>Development</h3>
-                <p>Focused on building reliable software systems and conducting thorough testing to ensure high-quality digital solutions.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-tasks" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
-                <h3>Operations</h3>
-                <p>Expert in directing daily operations, leading large teams, and streamlining complex administrative workflows.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 20px;"></i>
-                <h3>Security & Safety</h3>
-                <p>Experience in security management, anti-theft investigations, and training personnel in safety protocols.</p>
-            </div>
+    <h2 class="section-title">Verified Credentials</h2>
+    <div class="badge-grid">
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Critical Thinking</p>
         </div>
-    </section>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Digital Literacy</p>
+        </div>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Professionalism</p>
+        </div>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Communication</p>
+        </div>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="de9f20df-a028-41f2-a5b5-c04d0451ace6"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Teamwork</p>
+        </div>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="b53d2318-924d-4035-aca2-26f3344f6178"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Problem Solving</p>
+        </div>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="b102d2ed-94d5-4c91-bde8-788b62afcfcd"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Intercultural Fluency</p>
+        </div>
+        <div class="badge-card">
+            <div style="width: 140px; height: 140px; margin: 0 auto;" data-iframe-width="140" data-iframe-height="140" data-score-id="044e7be9-82b9-4867-85b2-13429204118d"></div>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Career Management</p>
+        </div>
+    </div>
 
-    <section style="background: rgba(0,0,0,0.2);">
+    <section class="exp-section">
         <h2 class="section-title">Professional Experience</h2>
-        <div class="grid">
-            <div class="card">
-                <small style="color: var(--primary);">2023 - PRESENT</small>
-                <h3>Abe Law Firm</h3>
-                <p><strong>Office Manager</strong></p>
-                <p>Managed high-volume operations and improved office efficiency through strategic oversight.</p>
-            </div>
-            <div class="card">
-                <small style="color: var(--primary);">2024 - 2025</small>
-                <h3>Fire Watch Security</h3>
-                <p><strong>Office Manager</strong></p>
-                <p>Developed safety patrols and led training sessions for new security officers.</p>
-            </div>
-            <div class="card">
-                <small style="color: var(--primary);">2017 - 2023</small>
-                <h3>Ross Dress For Less</h3>
-                <p><strong>Store Manager</strong></p>
-                <p>Led teams of over 60 people and solved complex fraud and loss-prevention issues.</p>
-            </div>
+        
+        <div class="card">
+            <h3>Office Manager | ABE LAW FIRM</h3>
+            <p style="color: var(--primary);">Aug. 2023 – Present</p>
+            <ul>
+                <li>Directed daily operations using Legal Management Systems to maintain a fast-paced digital workflow.</li>
+                <li>Implemented new digital filing protocols to transition from physical to cloud-based documentation.</li>
+                <li>Utilized Microsoft Excel for data tracking and reporting on case progress.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Office Manager | FIRE WATCH SECURITY</h3>
+            <p style="color: var(--primary);">Aug. 2024 – March 2025</p>
+            <ul>
+                <li>Administered Security Monitoring Software to track building activity and generate safety reports.</li>
+                <li>Facilitated technical onboarding and training for new hires on proprietary security systems.</li>
+                <li>Leveraged digital scheduling tools to coordinate shifts and manage a team of security officers.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Store Manager | ROSS DRESS FOR LESS</h3>
+            <p style="color: var(--primary);">Dec. 2017 – Aug. 2023</p>
+            <ul>
+                <li>Managed workforce management software (Kronos/Oracle) to lead 60+ associates.</li>
+                <li>Analyzed Point-of-Sale (POS) data to identify and resolve theft and fraud issues.</li>
+                <li>Utilized Asset Protection (ALPM) software to monitor store security and manage digital investigations.</li>
+            </ul>
         </div>
     </section>
 
-    <section>
-        <h2 class="section-title">My Toolbox</h2>
-        <div style="text-align: center;">
-            <span class="skill-pill">Software Development</span>
-            <span class="skill-pill">Software Testing</span>
-            <span class="skill-pill">Graphic Design</span>
-            <span class="skill-pill">Adobe After Effects</span>
-            <span class="skill-pill">Digital Marketing</span>
-            <span class="skill-pill">Microsoft Suite</span>
-            <span class="skill-pill">Critical Thinking</span>
+    <section style="padding: 40px 10%; background: rgba(0,0,0,0.2);">
+        <h2 class="section-title">Education & Training</h2>
+        <div class="card">
+            <h3>Per Scholas | AWS re/Start Training</h3>
+            <p style="color: var(--primary);">Seattle, WA | August 2026</p>
+            <p style="margin-top: 10px;">Focused on Cloud Computing Services, Networking, Databases, and AWS Cloud Management.</p>
+            <div style="margin-top: 15px;">
+                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;">Linux</span>
+                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;">Python</span>
+                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;">AWS EC2/S3/VPC</span>
+                <span style="background: rgba(0, 210, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem;">Shell Scripting</span>
+            </div>
         </div>
     </section>
 
     <footer>
-        <h2 style="font-size: 2rem;">Let's Connect</h2>
-        <p>I am always open to discussing new projects or opportunities.</p>
-        <a href="mailto:Nebiyu.yilma@gmail.com" class="contact-link">nebiyumekonnen17@gmail.com</a>
-        <p>206 698-6660</p>
+        <p>Nebiyu Mekonnen</p>
+        <p>Bothell, WA | 206-698-6660</p>
+        <p>nebiyumekonnen17@gmail.com</p>
     </footer>
 
-    <script>
-        function runCode() {
-            const output = document.getElementById('output');
-            output.style.display = 'block';
-            output.style.animation = 'fadeIn 0.5s';
-        }
-    </script>
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 </body>
 </html>
