@@ -9,13 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Fira+Code&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Fira+Code&display=swap');
         
-        :root { --aws-orange: #FF9900; }
         body { background-color: #000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'Fira Code', monospace; }
         
-        /* The Canvas background for Binary Rain */
         #binary-canvas {
             position: fixed;
             top: 0;
@@ -23,19 +21,22 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.15; /* Subtle background effect */
+            opacity: 0.15;
         }
 
-        .story-section { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem; }
+        .story-section { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem; }
         .title-huge { font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 32px; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; }
+        
+        /* Arsenal Item Provisioning State */
+        .arsenal-item { opacity: 0; transform: translateX(-20px); }
     </style>
 </head>
 <body>
 
     <canvas id="binary-canvas"></canvas>
 
-    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference">
+    <nav id="main-nav" class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference opacity-0">
         <div class="mono font-bold tracking-tighter text-orange-500">NEBIYU.SYSTEMS</div>
         <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
             <a href="#identity" class="hover:text-white transition">Identity</a>
@@ -53,19 +54,23 @@
 
     <section id="identity" class="story-section">
         <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-24 items-center">
-            <div class="relative opacity-0 scale-90" id="profile-wrap">
-                <img src="nebiyu-profile.jpg" alt="Nebiyu Mekonnen" class="rounded-[40px] grayscale filter contrast-125 shadow-2xl">
+            <div class="relative opacity-0 scale-95" id="profile-wrap">
+                <img src="nebiyu-profile.jpg" alt="Nebiyu Mekonnen" class="rounded-[40px] shadow-2xl border border-white/10">
                 <div class="absolute -bottom-8 -left-8 glass-card p-8 mono text-xs text-orange-400">
                     <div>> LOC: BOTHELL, WA</div>
-                    <div>> LANG: [ENGLISH, AMHARIC]</div>
+                    <div>> STATUS: READY_FOR_DEPLOYMENT</div>
                 </div>
             </div>
             <div class="space-y-10 opacity-0" id="pivot-text">
                 <h2 class="text-6xl font-extrabold tracking-tighter italic">The Narrative Shift.</h2>
-                <p class="text-gray-400 text-xl leading-relaxed">
-                    Merging a career in operations management with high-level <span class="text-white font-bold">Cloud Infrastructure</span> expertise. 
-                    Translating human-scale leadership into resilient, automated AWS architectures.
-                </p>
+                <div class="space-y-6 text-gray-400 text-xl leading-relaxed">
+                    <p>
+                        Merging years of high-stakes operations management with intensive technical training in <strong>AWS Cloud Infrastructure</strong>. My professional history is defined by leading massive teams of <strong>60+ associates</strong> and managing mission-critical digital systems.
+                    </p>
+                    <p>
+                        Today, I translate that large-scale leadership into the digital realm. I engineer <strong>resilient, automated, and secure architectures</strong> designed to scale.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -75,49 +80,44 @@
             <h3 class="text-4xl font-bold tracking-tight uppercase mb-16 flex items-center gap-4">
                 <i data-lucide="cpu" class="text-orange-500"></i> Technical_Arsenal
             </h3>
-            <div class="grid md:grid-cols-2 gap-12 text-sm text-gray-400">
-                <div class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-12 text-sm">
+                <div class="space-y-8">
                     <h4 class="mono text-orange-500">/ CLOUD_SERVICES</h4>
-                    <ul class="space-y-3">
-                        <li>• EC2 Instances & Lambda</li>
-                        <li>• VPC Architecture & Networking</li>
-                        <li>• S3 Hosting & IAM Policies</li>
-                        <li>• Auto Scaling & Load Balancing</li>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="layers" class="w-4 h-4"></i> VPC Architecture & Networking</li>
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="server" class="w-4 h-4"></i> EC2 Instances & Auto Scaling</li>
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="zap" class="w-4 h-4"></i> Lambda Serverless Functions</li>
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="shield" class="w-4 h-4"></i> S3 Hosting & IAM Security</li>
                     </ul>
                 </div>
-                <div class="space-y-6">
+                <div class="space-y-8">
                     <h4 class="mono text-orange-500">/ DEVELOPMENT</h4>
-                    <ul class="space-y-3">
-                        <li>• Linux System Administration</li>
-                        <li>• Bash & Shell Scripting</li>
-                        <li>• Stack: JS, Python, Java, C#</li>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="terminal" class="w-4 h-4"></i> Linux System Administration</li>
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="code" class="w-4 h-4"></i> Bash & Shell Scripting</li>
+                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="binary" class="w-4 h-4"></i> JS, Python, Java, C#</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="logs" class="story-section">
-        <div class="max-w-4xl w-full space-y-32">
+    <section id="logs" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto space-y-40">
             <div class="reveal-log">
                 <h4 class="text-4xl font-bold mb-4">Office Manager</h4>
-                <p class="mono text-xs text-orange-500 mb-6">ABE LAW FIRM // 2023—PRES</p>
-                <p class="text-gray-400 leading-relaxed text-lg">
-                    Spearheaded the transition from physical filing to <span class="text-white">Cloud-based documentation</span>. 
-                    Ensuring 100% operational uptime for mission-critical legal data.
-                </p>
+                <p class="mono text-xs text-orange-500 mb-6">ABE LAW FIRM</p>
+                <p class="text-gray-400 leading-relaxed text-lg">Spearheaded the transition from physical filing to Cloud-based documentation, ensuring 100% operational uptime for mission-critical legal data.</p>
             </div>
             <div class="reveal-log text-right">
-                <h4 class="text-4xl font-bold mb-4">Operations Manager</h4>
-                <p class="mono text-xs text-orange-500 mb-6">FIRE WATCH SECURITY // 2024—2025</p>
-                <p class="text-gray-400 leading-relaxed text-lg">
-                    Administered Security Monitoring Software. Led technical onboarding for proprietary systems and served as a liaison for software updates.
-                </p>
+                <h4 class="text-4xl font-bold mb-4">Store Manager</h4>
+                <p class="mono text-xs text-orange-500 mb-6">ROSS DRESS FOR LESS</p>
+                <p class="text-gray-400 leading-relaxed text-lg">Leveraged workforce management software to lead and schedule a team of 60+ associates, reducing inventory shortage and optimizing labor costs.</p>
             </div>
         </div>
     </section>
 
-    <footer class="py-40 text-center">
+    <footer class="py-60 text-center">
         <div class="opacity-0" id="footer-reveal">
             <h2 class="title-huge hover:text-orange-500 transition-all duration-700 cursor-default">LET'S BUILD.</h2>
             <p class="mt-12 text-gray-500 mono text-xs tracking-widest uppercase">Bothell, Washington // 2026</p>
@@ -128,43 +128,48 @@
         lucide.createIcons();
         gsap.registerPlugin(ScrollTrigger);
 
-        // --- BINARY RAIN LOGIC ---
+        // --- SHARP BINARY RAIN ---
         const canvas = document.getElementById('binary-canvas');
         const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resize() {
+            const scale = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * scale;
+            canvas.height = window.innerHeight * scale;
+            ctx.scale(scale, scale);
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', resize);
+        resize();
 
         const binary = "10";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
+        const fontSize = 18;
+        const columns = window.innerWidth / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawBinary() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#FF9900'; // AWS Orange
-            ctx.font = fontSize + 'px monospace';
-
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; 
+            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+            ctx.fillStyle = '#FF9900';
+            ctx.font = `500 ${fontSize}px "Fira Code", monospace`;
             for (let i = 0; i < drops.length; i++) {
                 const text = binary.charAt(Math.floor(Math.random() * binary.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                if (drops[i] * fontSize > window.innerHeight && Math.random() > 0.98) drops[i] = 0;
                 drops[i]++;
             }
         }
+        setInterval(drawBinary, 45);
 
-        let animationInterval = setInterval(drawBinary, 33);
+        // --- ENTRANCE SEQUENCE ---
+        window.onload = () => {
+            const tl = gsap.timeline();
+            tl.to("#hero-title", { opacity: 1, y: -20, duration: 2, delay: 2.5, ease: "power4.out" })
+              .to("#hero-tag", { opacity: 1, duration: 1.5 }, "-=0.5")
+              .to("#main-nav", { opacity: 1, duration: 1 }, "-=1");
+        };
 
-        // Speed up the rain when scrolling
-        window.addEventListener('scroll', () => {
-            canvas.style.opacity = 0.3 + (window.scrollY / 5000); // Intensify on scroll
-        });
-
-        // --- GSAP STORYTELLING LOGIC ---
-        gsap.to("#hero-title", { opacity: 1, y: -30, duration: 2, ease: "power4.out" });
-        gsap.to("#hero-tag", { opacity: 1, delay: 0.8, duration: 1.5 });
-
+        // --- SCROLL ANIMATIONS ---
         gsap.to("#profile-wrap", {
             scrollTrigger: { trigger: "#identity", start: "top 70%", end: "center center", scrub: 1 },
             opacity: 1, scale: 1
@@ -175,15 +180,21 @@
             opacity: 1, y: -20, duration: 1.5, ease: "expo.out"
         });
 
+        // Animated Arsenal "Provisioning" Sequence
         gsap.to("#stack-card", {
             scrollTrigger: { trigger: "#stack", start: "top 80%" },
             opacity: 1, y: -30, duration: 1.5, ease: "power4.out"
         });
 
+        gsap.to(".arsenal-item", {
+            scrollTrigger: { trigger: "#stack", start: "top 60%" },
+            opacity: 1, x: 0, stagger: 0.2, duration: 1, ease: "back.out(1.7)"
+        });
+
         document.querySelectorAll('.reveal-log').forEach((el) => {
             gsap.from(el, {
                 scrollTrigger: { trigger: el, start: "top 85%" },
-                opacity: 0, y: 50, duration: 1.5
+                opacity: 0, y: 60, duration: 1.5
             });
         });
 
