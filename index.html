@@ -3,273 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebiyu Mekonnen | Cloud Infrastructure & Operations</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Nebiyu Mekonnen | Cloud Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --bg: #0d1117;
-            --sidebar: #161b22;
-            --primary: #58a6ff;
-            --accent: #238636;
-            --syntax-key: #ff7b72;
-            --syntax-func: #d2a8ff;
-            --text: #c9d1d9;
-            --border: #30363d;
-            --glow: rgba(88, 166, 255, 0.15);
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Fira+Code&display=swap');
+        
+        :root { --aws-orange: #FF9900; }
+        body { background-color: #000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'Fira Code', monospace; }
+        
+        /* The Canvas background for Binary Rain */
+        #binary-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15; /* Subtle background effect */
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* --- Interactive Sidebar (IDE Style) --- */
-        nav {
-            width: 280px;
-            background: var(--sidebar);
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-
-        .brand { padding: 30px 20px; border-bottom: 1px solid var(--border); }
-        .brand h1 { font-family: 'Fira Code', monospace; font-size: 1.1rem; color: var(--primary); }
-
-        .nav-links { list-style: none; padding: 20px 10px; flex: 1; }
-        .nav-item {
-            text-decoration: none;
-            color: #8b949e;
-            font-size: 0.9rem;
-            padding: 12px 15px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            margin-bottom: 5px;
-        }
-        .nav-item:hover { background: #21262d; color: var(--text); transform: translateX(5px); }
-        .nav-item.active { background: #1f2937; color: var(--primary); box-shadow: inset 3px 0 0 var(--primary); }
-
-        /* --- Main Content Area --- */
-        main { flex: 1; overflow-y: auto; scroll-behavior: smooth; position: relative; }
-
-        /* --- Animated Hero Section --- */
-        .hero {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 8%;
-            background: radial-gradient(circle at 0% 0%, var(--glow) 0%, transparent 50%);
-        }
-
-        .typewriter-container { font-family: 'Fira Code', monospace; font-size: 3rem; font-weight: 800; }
-        .cursor { animation: blink 1s infinite; color: var(--primary); }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* --- Content Layout --- */
-        .content-section { padding: 80px 8%; opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
-        .content-section.visible { opacity: 1; transform: translateY(0); }
-
-        h2 { font-size: 1.8rem; margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
-        h2::before { content: "0" + attr(data-num); color: var(--primary); font-family: 'Fira Code'; font-size: 1rem; }
-        h2::after { content: ""; height: 1px; background: var(--border); flex: 1; }
-
-        /* --- Interactive Skill Cards --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .skill-card {
-            background: var(--sidebar);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 12px;
-            transition: 0.4s;
-            cursor: default;
-        }
-        .skill-card:hover { 
-            border-color: var(--primary); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: scale(1.02);
-        }
-        .skill-card h3 { font-family: 'Fira Code', monospace; color: var(--syntax-func); margin-bottom: 20px; }
-        .skill-card ul { list-style: none; color: #8b949e; font-size: 0.95rem; }
-        .skill-card li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-        .skill-card li::before { content: ">"; position: absolute; left: 0; color: var(--accent); }
-
-        /* --- Timeline --- */
-        .timeline-item {
-            border-left: 2px solid var(--border);
-            padding: 0 0 50px 30px;
-            position: relative;
-        }
-        .timeline-item::after {
-            content: ""; position: absolute; left: -7px; top: 0; width: 12px; height: 12px;
-            background: var(--primary); border-radius: 50%; transition: 0.3s;
-        }
-        .timeline-item:hover::after { transform: scale(1.5); box-shadow: 0 0 15px var(--primary); }
-        .timeline-item h4 { color: var(--syntax-key); font-size: 1.2rem; }
-        .timeline-item .meta { color: var(--accent); font-family: 'Fira Code'; font-size: 0.8rem; margin-bottom: 15px; display: block; }
-
-        @media (max-width: 900px) { nav { display: none; } }
+        .story-section { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem; }
+        .title-huge { font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 32px; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="brand">
-            <h1>NEBIYU_MEKONNEN</h1>
-        </div>
-        <div class="nav-links">
-            <div class="nav-item active" data-target="home"><i class="fas fa-terminal"></i> root/home.py</div>
-            <div class="nav-item" data-target="tech"><i class="fab fa-aws"></i> cloud/stack.yaml</div>
-            <div class="nav-item" data-target="exp"><i class="fas fa-history"></i> logs/experience.log</div>
-            <div class="nav-item" data-target="certs"><i class="fas fa-certificate"></i> sys/certs.sh</div>
-        </div>
-        <div style="padding: 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: #8b949e;">
-            <p><i class="fas fa-envelope"></i> nebiyumekonnen17@gmail.com</p>
-            <div style="margin-top: 15px; display: flex; gap: 15px;">
-                <a href="https://www.linkedin.com/in/nebiyumekonnen/" style="color: inherit;"><i class="fab fa-linkedin fa-lg"></i></a>
-                <a href="https://drewmarcumx3.github.io/My-Portfolio/" style="color: inherit;"><i class="fas fa-link fa-lg"></i></a>
-            </div>
+    <canvas id="binary-canvas"></canvas>
+
+    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference">
+        <div class="mono font-bold tracking-tighter text-orange-500">NEBIYU.SYSTEMS</div>
+        <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
+            <a href="#identity" class="hover:text-white transition">Identity</a>
+            <a href="#stack" class="hover:text-white transition">Stack</a>
+            <a href="#logs" class="hover:text-white transition">Logs</a>
         </div>
     </nav>
 
-    <main id="main-scroll">
-        <section class="hero" id="home">
-            <p style="color: var(--accent); font-family: 'Fira Code'; margin-bottom: 10px;">// Initializing Infrastructure...</p>
-            <div class="typewriter-container">
-                > <span id="type-text"></span><span class="cursor">_</span>
-            </div>
-            <p style="margin-top: 25px; color: #8b949e; max-width: 600px; line-height: 1.8;">
-                Detail-oriented IT professional specializing in <strong>AWS Cloud Computing</strong> and <strong>Linux Architecture</strong>. Expert in bridging high-level operations with technical automation.
-            </p>
-        </section>
+    <section class="story-section">
+        <div class="text-center">
+            <h1 class="title-huge mb-10 opacity-0" id="hero-title">NEBIYU<br/><span class="text-orange-500">MEKONNEN</span></h1>
+            <p class="mono text-gray-500 text-sm tracking-widest opacity-0" id="hero-tag">STATUS: INITIALIZING_CLOUD_ARCHITECT</p>
+        </div>
+    </section>
 
-        <section class="content-section" id="tech" data-num="1">
-            <h2>Technical_Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>compute_and_networking()</h3>
-                    <ul>
-                        <li><strong>AWS VPC:</strong> Designing isolated subnets, NACLs, and Security Groups.</li>
-                        <li><strong>Scalability:</strong> Configuring EC2 Auto Scaling and Elastic Load Balancers.</li>
-                        <li><strong>Governance:</strong> Managing identities via AWS IAM and Systems Manager (SSM).</li>
+    <section id="identity" class="story-section">
+        <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative opacity-0 scale-90" id="profile-wrap">
+                <img src="nebiyu-profile.jpg" alt="Nebiyu Mekonnen" class="rounded-[40px] grayscale filter contrast-125 shadow-2xl">
+                <div class="absolute -bottom-8 -left-8 glass-card p-8 mono text-xs text-orange-400">
+                    <div>> LOC: BOTHELL, WA</div>
+                    <div>> LANG: [ENGLISH, AMHARIC]</div>
+                </div>
+            </div>
+            <div class="space-y-10 opacity-0" id="pivot-text">
+                <h2 class="text-6xl font-extrabold tracking-tighter italic">The Narrative Shift.</h2>
+                <p class="text-gray-400 text-xl leading-relaxed">
+                    Merging a career in operations management with high-level <span class="text-white font-bold">Cloud Infrastructure</span> expertise. 
+                    Translating human-scale leadership into resilient, automated AWS architectures.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="stack" class="story-section">
+        <div class="max-w-5xl w-full glass-card p-16 md:p-24 opacity-0" id="stack-card">
+            <h3 class="text-4xl font-bold tracking-tight uppercase mb-16 flex items-center gap-4">
+                <i data-lucide="cpu" class="text-orange-500"></i> Technical_Arsenal
+            </h3>
+            <div class="grid md:grid-cols-2 gap-12 text-sm text-gray-400">
+                <div class="space-y-6">
+                    <h4 class="mono text-orange-500">/ CLOUD_SERVICES</h4>
+                    <ul class="space-y-3">
+                        <li>• EC2 Instances & Lambda</li>
+                        <li>• VPC Architecture & Networking</li>
+                        <li>• S3 Hosting & IAM Policies</li>
+                        <li>• Auto Scaling & Load Balancing</li>
                     </ul>
                 </div>
-                <div class="skill-card">
-                    <h3>automation_and_os()</h3>
-                    <ul>
-                        <li><strong>Linux/Shell:</strong> Advanced scripting for process and user management.</li>
-                        <li><strong>Languages:</strong> Development skills in Python, JavaScript, Java, and C#.</li>
-                        <li><strong>Connectivity:</strong> Secure tunneling using SSH and Putty from hybrid environments.</li>
+                <div class="space-y-6">
+                    <h4 class="mono text-orange-500">/ DEVELOPMENT</h4>
+                    <ul class="space-y-3">
+                        <li>• Linux System Administration</li>
+                        <li>• Bash & Shell Scripting</li>
+                        <li>• Stack: JS, Python, Java, C#</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="content-section" id="exp" data-num="2">
-            <h2>Professional_Logs</h2>
-            <div class="timeline-item">
-                <span class="meta">AUG 2023 - PRESENT</span>
-                <h4>OFFICE MANAGER | ABE Law Firm</h4>
-                <p style="color: #8b949e; font-size: 0.95rem; margin-top: 10px;">
-                    Optimized daily operations via <strong>Legal Management Systems</strong> and spearheaded the transition to <strong>Cloud-Based documentation</strong>, significantly increasing data accessibility and security protocol compliance.
+    <section id="logs" class="story-section">
+        <div class="max-w-4xl w-full space-y-32">
+            <div class="reveal-log">
+                <h4 class="text-4xl font-bold mb-4">Office Manager</h4>
+                <p class="mono text-xs text-orange-500 mb-6">ABE LAW FIRM // 2023—PRES</p>
+                <p class="text-gray-400 leading-relaxed text-lg">
+                    Spearheaded the transition from physical filing to <span class="text-white">Cloud-based documentation</span>. 
+                    Ensuring 100% operational uptime for mission-critical legal data.
                 </p>
             </div>
-            <div class="timeline-item">
-                <span class="meta">AUG 2024 - MAR 2025</span>
-                <h4>OFFICE MANAGER | Fire Watch Security</h4>
-                <p style="color: #8b949e; font-size: 0.95rem; margin-top: 10px;">
-                    Administered <strong>Security Monitoring Software</strong> and led technical onboarding for proprietary hardware/software systems, reducing staff "time-to-competency" and enhancing safety report accuracy.
+            <div class="reveal-log text-right">
+                <h4 class="text-4xl font-bold mb-4">Operations Manager</h4>
+                <p class="mono text-xs text-orange-500 mb-6">FIRE WATCH SECURITY // 2024—2025</p>
+                <p class="text-gray-400 leading-relaxed text-lg">
+                    Administered Security Monitoring Software. Led technical onboarding for proprietary systems and served as a liaison for software updates.
                 </p>
             </div>
-            <div class="timeline-item">
-                <span class="meta">DEC 2017 - AUG 2023</span>
-                <h4>STORE MANAGER | Ross Dress For Less</h4>
-                <p style="color: #8b949e; font-size: 0.95rem; margin-top: 10px;">
-                    Managed 60+ associates via <strong>Kronos/Oracle</strong>. Analyzed <strong>POS Telemetry</strong> and <strong>ALPM Software</strong> to detect and resolve fraud patterns, contributing to massive shortage reduction.
-                </p>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="content-section" id="certs" data-num="3">
-            <h2>Verified_Credentials</h2>
-            <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: 12px; border: 1px solid var(--border);">
-                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div>
-                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div>
-                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div>
-                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div>
-                    <div style="width: 130px; height: 130px; border: 1px dashed var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--text-dim);">AWS Foundation</div>
-                </div>
-            </div>
-        </section>
-    </main>
+    <footer class="py-40 text-center">
+        <div class="opacity-0" id="footer-reveal">
+            <h2 class="title-huge hover:text-orange-500 transition-all duration-700 cursor-default">LET'S BUILD.</h2>
+            <p class="mt-12 text-gray-500 mono text-xs tracking-widest uppercase">Bothell, Washington // 2026</p>
+        </div>
+    </footer>
 
     <script>
-        // Typewriter Effect
-        const words = ["Nebiyu Mekonnen", "AWS Cloud Specialist", "Linux Administrator"];
-        let wordIdx = 0;
-        let charIdx = 0;
-        let isDeleting = false;
-        const target = document.getElementById("type-text");
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
 
-        function type() {
-            const currentWord = words[wordIdx];
-            if (isDeleting) {
-                target.textContent = currentWord.substring(0, charIdx - 1);
-                charIdx--;
-            } else {
-                target.textContent = currentWord.substring(0, charIdx + 1);
-                charIdx++;
+        // --- BINARY RAIN LOGIC ---
+        const canvas = document.getElementById('binary-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const binary = "10";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawBinary() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#FF9900'; // AWS Orange
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = binary.charAt(Math.floor(Math.random() * binary.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
             }
-
-            let speed = isDeleting ? 50 : 150;
-
-            if (!isDeleting && charIdx === currentWord.length) {
-                isDeleting = true;
-                speed = 2000; // Pause at end
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false;
-                wordIdx = (wordIdx + 1) % words.length;
-                speed = 500;
-            }
-
-            setTimeout(type, speed);
         }
 
-        // Scroll Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Update Nav
-                    document.querySelectorAll('.nav-item').forEach(item => {
-                        item.classList.toggle('active', item.dataset.target === entry.target.id);
-                    });
-                }
-            });
-        }, { threshold: 0.2 });
+        let animationInterval = setInterval(drawBinary, 33);
 
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
+        // Speed up the rain when scrolling
+        window.addEventListener('scroll', () => {
+            canvas.style.opacity = 0.3 + (window.scrollY / 5000); // Intensify on scroll
+        });
 
-        // Click to Scroll
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                document.getElementById(item.dataset.target).scrollIntoView({ behavior: 'smooth' });
+        // --- GSAP STORYTELLING LOGIC ---
+        gsap.to("#hero-title", { opacity: 1, y: -30, duration: 2, ease: "power4.out" });
+        gsap.to("#hero-tag", { opacity: 1, delay: 0.8, duration: 1.5 });
+
+        gsap.to("#profile-wrap", {
+            scrollTrigger: { trigger: "#identity", start: "top 70%", end: "center center", scrub: 1 },
+            opacity: 1, scale: 1
+        });
+
+        gsap.to("#pivot-text", {
+            scrollTrigger: { trigger: "#identity", start: "top 60%" },
+            opacity: 1, y: -20, duration: 1.5, ease: "expo.out"
+        });
+
+        gsap.to("#stack-card", {
+            scrollTrigger: { trigger: "#stack", start: "top 80%" },
+            opacity: 1, y: -30, duration: 1.5, ease: "power4.out"
+        });
+
+        document.querySelectorAll('.reveal-log').forEach((el) => {
+            gsap.from(el, {
+                scrollTrigger: { trigger: el, start: "top 85%" },
+                opacity: 0, y: 50, duration: 1.5
             });
         });
 
-        window.onload = type;
+        gsap.to("#footer-reveal", {
+            scrollTrigger: { trigger: "footer", start: "top 80%" },
+            opacity: 1, y: -20, duration: 2
+        });
     </script>
-    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 </body>
 </html>
