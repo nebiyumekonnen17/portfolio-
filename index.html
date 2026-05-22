@@ -16,7 +16,7 @@
     <canvas id="binary-canvas"></canvas>
 
     <nav id="main-nav" class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference opacity-0">
-        <a href="index.html" class="mono font-bold tracking-tighter text-orange-500">NEBIYU.SYSTEMS</a>
+        <div class="mono font-bold tracking-tighter text-orange-500">NEBIYU.SYSTEMS</div>
         <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
             <a href="#identity" class="hover:text-white transition">Identity</a>
             <a href="#stack" class="hover:text-white transition">Stack</a>
@@ -144,7 +144,7 @@
         // --- ENTRANCE SEQUENCE ---
         window.onload = () => {
             const tl = gsap.timeline();
-            tl.to("#hero-title", { opacity: 1, y: -20, duration: 2, delay: 0.5, ease: "power4.out" })
+            tl.to("#hero-title", { opacity: 1, y: -20, duration: 2, delay: 2.5, ease: "power4.out" })
               .to("#hero-tag", { opacity: 1, duration: 1.5 }, "-=0.5")
               .to("#main-nav", { opacity: 1, duration: 1 }, "-=1");
         };
