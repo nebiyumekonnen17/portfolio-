@@ -3,205 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebiyu Mekonnen | Cloud Architect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Fira+Code&display=swap');
-        
-        body { background-color: #000; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .mono { font-family: 'Fira Code', monospace; }
-        
-        #binary-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.15;
-        }
-
-        .story-section { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem; }
-        .title-huge { font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; }
-        
-        /* Arsenal Item Provisioning State */
-        .arsenal-item { opacity: 0; transform: translateX(-20px); }
-    </style>
+    <title>Nebiyu Mekonnen | Cloud Infrastructure & Operations</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <canvas id="binary-canvas"></canvas>
-
-    <nav id="main-nav" class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference opacity-0">
-        <div class="mono font-bold tracking-tighter text-orange-500">NEBIYU.SYSTEMS</div>
-        <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
-            <a href="#identity" class="hover:text-white transition">Identity</a>
-            <a href="#stack" class="hover:text-white transition">Stack</a>
-            <a href="#logs" class="hover:text-white transition">Logs</a>
+    <nav>
+        <div class="brand">
+            <h1>NEBIYU_MEKONNEN</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-item active" data-target="home"><i class="fas fa-terminal"></i> root/home.py</a>
+            <a href="#tech" class="nav-item" data-target="tech"><i class="fab fa-aws"></i> cloud/stack.yaml</a>
+            <a href="#exp" class="nav-item" data-target="exp"><i class="fas fa-history"></i> logs/experience.log</a>
+            <a href="#certs" class="nav-item" data-target="certs"><i class="fas fa-certificate"></i> sys/certs.sh</a>
+            <a href="about.html" class="nav-item"><i class="fas fa-user-astronaut"></i> usr/about.md</a>
+        </div>
+        <div style="padding: 20px; border-top: 1px solid var(--border); font-size: 0.8rem; color: #8b949e;">
+            <p><i class="fas fa-envelope"></i> nebiyumekonnen17@gmail.com</p>
+            <div style="margin-top: 15px; display: flex; gap: 15px;">
+                <a href="https://www.linkedin.com/in/nebiyumekonnen/" target="_blank" style="color: inherit;"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="https://drewmarcumx3.github.io/My-Portfolio/" target="_blank" style="color: inherit;"><i class="fas fa-link fa-lg"></i></a>
+            </div>
         </div>
     </nav>
 
-    <section class="story-section">
-        <div class="text-center">
-            <h1 class="title-huge mb-10 opacity-0" id="hero-title">NEBIYU<br/><span class="text-orange-500">MEKONNEN</span></h1>
-            <p class="mono text-gray-500 text-sm tracking-widest opacity-0" id="hero-tag">STATUS: INITIALIZING_CLOUD_ARCHITECT</p>
-        </div>
-    </section>
-
-    <section id="identity" class="story-section">
-        <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-24 items-center">
-            <div class="relative opacity-0 scale-95" id="profile-wrap">
-                <img src="nebiyu-profile.jpg" alt="Nebiyu Mekonnen" class="rounded-[40px] shadow-2xl border border-white/10">
-                <div class="absolute -bottom-8 -left-8 glass-card p-8 mono text-xs text-orange-400">
-                    <div>> LOC: BOTHELL, WA</div>
-                    <div>> STATUS: READY_FOR_DEPLOYMENT</div>
-                </div>
+    <main id="main-scroll">
+        <section class="hero" id="home">
+            <p style="color: var(--accent); font-family: 'Fira Code'; margin-bottom: 10px;">// Initializing Infrastructure...</p>
+            <div class="typewriter-container">
+                > <span id="type-text"></span><span class="cursor">_</span>
             </div>
-            <div class="space-y-10 opacity-0" id="pivot-text">
-                <h2 class="text-6xl font-extrabold tracking-tighter italic">The Narrative Shift</h2>
-                <div class="space-y-6 text-gray-400 text-xl leading-relaxed">
-                    <p>
-                        !Merging years of high stakes operations management with intensive technical training in <strong>AWS Cloud Infrastructure</strong>. My professional history is defined by leading massive teams of <strong>60+ associates</strong> and managing mission critical digital systems.
-                    </p>
-                    <p>
-                        Today, I translate that large scale leadership into the digital realm. I engineer <strong>resilient, automated, and secure architectures</strong> designed to scale.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <p style="margin-top: 25px; color: #8b949e; max-width: 600px; line-height: 1.8;">
+                Detail-oriented IT professional specializing in <strong>AWS Cloud Computing</strong> and <strong>Linux Architecture</strong>. Expert in bridging high-level operations with technical automation.
+            </p>
+        </section>
 
-    <section id="stack" class="story-section">
-        <div class="max-w-5xl w-full glass-card p-16 md:p-24 opacity-0" id="stack-card">
-            <h3 class="text-4xl font-bold tracking-tight uppercase mb-16 flex items-center gap-4">
-                <i data-lucide="cpu" class="text-orange-500"></i> Technical_Arsenal
-            </h3>
-            <div class="grid md:grid-cols-2 gap-12 text-sm">
-                <div class="space-y-8">
-                    <h4 class="mono text-orange-500">/ CLOUD_SERVICES</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="layers" class="w-4 h-4"></i> VPC Architecture & Networking</li>
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="server" class="w-4 h-4"></i> EC2 Instances & Auto Scaling</li>
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="zap" class="w-4 h-4"></i> Lambda Serverless Functions</li>
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="shield" class="w-4 h-4"></i> S3 Hosting & IAM Security</li>
+        <section class="content-section" id="tech" data-num="1">
+            <h2>Technical_Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>compute_and_networking()</h3>
+                    <ul>
+                        <li><strong>AWS VPC:</strong> Designing isolated subnets, NACLs, and Security Groups.</li>
+                        <li><strong>Scalability:</strong> Configuring EC2 Auto Scaling and Elastic Load Balancers.</li>
+                        <li><strong>Governance:</strong> Managing identities via AWS IAM and Systems Manager (SSM).</li>
                     </ul>
                 </div>
-                <div class="space-y-8">
-                    <h4 class="mono text-orange-500">/ DEVELOPMENT</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="terminal" class="w-4 h-4"></i> Linux System Administration</li>
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="code" class="w-4 h-4"></i> Bash & Shell Scripting</li>
-                        <li class="arsenal-item flex items-center gap-3"><i data-lucide="binary" class="w-4 h-4"></i> JS, Python, Java, C#</li>
+                <div class="skill-card">
+                    <h3>automation_and_os()</h3>
+                    <ul>
+                        <li><strong>Linux/Shell:</strong> Advanced scripting for process and user management.</li>
+                        <li><strong>Languages:</strong> Development skills in Python, JavaScript, Java, and C#.</li>
+                        <li><strong>Connectivity:</strong> Secure tunneling using SSH and Putty from hybrid environments.</li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="logs" class="py-32 px-6">
-        <div class="max-w-5xl mx-auto space-y-40">
-            <div class="reveal-log">
-                <h4 class="text-4xl font-bold mb-4">Office Manager</h4>
-                <p class="mono text-xs text-orange-500 mb-6">ABE LAW FIRM</p>
-                <p class="text-gray-400 leading-relaxed text-lg">Spearheaded the transition from physical filing to Cloud based documentation, ensuring 100% operational uptime for mission critical legal data.</p>
+        <section class="content-section" id="exp" data-num="2">
+            <h2>Professional_Logs</h2>
+            <div class="timeline-item">
+                <span class="meta">AUG 2023 - PRESENT</span>
+                <h4>OFFICE MANAGER | ABE Law Firm</h4>
+                <p style="color: #8b949e; font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+                    Optimized daily operations via <strong>Legal Management Systems</strong> and spearheaded the transition to <strong>Cloud-Based documentation</strong>, significantly increasing data accessibility and security protocol compliance.
+                </p>
             </div>
-            <div class="reveal-log text-right">
-                <h4 class="text-4xl font-bold mb-4">Store Manager</h4>
-                <p class="mono text-xs text-orange-500 mb-6">ROSS DRESS FOR LESS</p>
-                <p class="text-gray-400 leading-relaxed text-lg">Leveraged workforce management software to lead and schedule a team of 60+ associates, reducing inventory shortage and optimizing labor costs.</p>
+            <div class="timeline-item">
+                <span class="meta">AUG 2024 - MAR 2025</span>
+                <h4>OFFICE MANAGER | Fire Watch Security</h4>
+                <p style="color: #8b949e; font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+                    Administered <strong>Security Monitoring Software</strong> and led technical onboarding for proprietary hardware/software systems, reducing staff "time-to-competency" and enhancing safety report accuracy.
+                </p>
             </div>
-        </div>
-    </section>
+            <div class="timeline-item">
+                <span class="meta">DEC 2017 - AUG 2023</span>
+                <h4>STORE MANAGER | Ross Dress For Less</h4>
+                <p style="color: #8b949e; font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+                    Managed 60+ associates via <strong>Kronos/Oracle</strong>. Analyzed <strong>POS Telemetry</strong> and <strong>ALPM Software</strong> to detect and resolve fraud patterns, contributing to massive shortage reduction.
+                </p>
+            </div>
+        </section>
 
-    <footer class="py-60 text-center">
-        <div class="opacity-0" id="footer-reveal">
-            <h2 class="title-huge hover:text-orange-500 transition-all duration-700 cursor-default">LET'S BUILD.</h2>
-            <p class="mt-12 text-gray-500 mono text-xs tracking-widest uppercase">Bothell, Washington // 2026</p>
-        </div>
-    </footer>
+        <section class="content-section" id="certs" data-num="3">
+            <h2>Verified_Credentials</h2>
+            <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: 12px; border: 1px solid var(--border);">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="689d3fe4-2a96-4b80-b973-11d10d82191d"></div>
+                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="96968633-64da-444c-83c8-ab02153a93a8"></div>
+                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="4d32860b-4633-4318-82bb-698cc34ac08b"></div>
+                    <div data-iframe-width="130" data-iframe-height="130" data-score-id="c6fc6ff7-cf87-4e03-a89e-d89c2499054c"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
-        lucide.createIcons();
-        gsap.registerPlugin(ScrollTrigger);
+        // Typewriter Effect
+        const words = ["Nebiyu Mekonnen", "AWS Cloud Specialist", "Linux Administrator"];
+        let wordIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        const target = document.getElementById("type-text");
 
-        // --- SHARP BINARY RAIN ---
-        const canvas = document.getElementById('binary-canvas');
-        const ctx = canvas.getContext('2d');
-        function resize() {
-            const scale = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * scale;
-            canvas.height = window.innerHeight * scale;
-            ctx.scale(scale, scale);
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        const binary = "10";
-        const fontSize = 18;
-        const columns = window.innerWidth / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function drawBinary() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; 
-            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-            ctx.fillStyle = '#FF9900';
-            ctx.font = `500 ${fontSize}px "Fira Code", monospace`;
-            for (let i = 0; i < drops.length; i++) {
-                const text = binary.charAt(Math.floor(Math.random() * binary.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > window.innerHeight && Math.random() > 0.98) drops[i] = 0;
-                drops[i]++;
+        function type() {
+            const currentWord = words[wordIdx];
+            if (isDeleting) {
+                target.textContent = currentWord.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                target.textContent = currentWord.substring(0, charIdx + 1);
+                charIdx++;
             }
+
+            let speed = isDeleting ? 50 : 150;
+
+            if (!isDeleting && charIdx === currentWord.length) {
+                isDeleting = true;
+                speed = 2000; 
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                wordIdx = (wordIdx + 1) % words.length;
+                speed = 500;
+            }
+
+            setTimeout(type, speed);
         }
-        setInterval(drawBinary, 45);
 
-        // --- ENTRANCE SEQUENCE ---
-        window.onload = () => {
-            const tl = gsap.timeline();
-            tl.to("#hero-title", { opacity: 1, y: -20, duration: 2, delay: 2.5, ease: "power4.out" })
-              .to("#hero-tag", { opacity: 1, duration: 1.5 }, "-=0.5")
-              .to("#main-nav", { opacity: 1, duration: 1 }, "-=1");
-        };
-
-        // --- SCROLL ANIMATIONS ---
-        gsap.to("#profile-wrap", {
-            scrollTrigger: { trigger: "#identity", start: "top 70%", end: "center center", scrub: 1 },
-            opacity: 1, scale: 1
-        });
-
-        gsap.to("#pivot-text", {
-            scrollTrigger: { trigger: "#identity", start: "top 60%" },
-            opacity: 1, y: -20, duration: 1.5, ease: "expo.out"
-        });
-
-        // Animated Arsenal "Provisioning" Sequence
-        gsap.to("#stack-card", {
-            scrollTrigger: { trigger: "#stack", start: "top 80%" },
-            opacity: 1, y: -30, duration: 1.5, ease: "power4.out"
-        });
-
-        gsap.to(".arsenal-item", {
-            scrollTrigger: { trigger: "#stack", start: "top 60%" },
-            opacity: 1, x: 0, stagger: 0.2, duration: 1, ease: "back.out(1.7)"
-        });
-
-        document.querySelectorAll('.reveal-log').forEach((el) => {
-            gsap.from(el, {
-                scrollTrigger: { trigger: el, start: "top 85%" },
-                opacity: 0, y: 60, duration: 1.5
+        // Scroll Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        if(item.dataset.target) {
+                            item.classList.toggle('active', item.dataset.target === entry.target.id);
+                        }
+                    });
+                }
             });
-        });
+        }, { threshold: 0.2 });
 
-        gsap.to("#footer-reveal", {
-            scrollTrigger: { trigger: "footer", start: "top 80%" },
-            opacity: 1, y: -20, duration: 2
-        });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+        window.onload = type;
     </script>
+    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 </body>
 </html>
